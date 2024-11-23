@@ -56,6 +56,8 @@ if [[ ! -f /usr/bin/rpcsx-update ]] || [[ ! `grep "VERSION=$UPDATE_VERSION" /usr
     sudo chmod +x /usr/bin/rpcsx-update
 fi
 
+set +x
+
 if [[ $REBOOT_REQUIRED == 1 ]]; then
     rpcsx --version
     echo "RPCSX installed successfully"
@@ -67,3 +69,4 @@ if [[ $REBOOT_REQUIRED == 1 ]]; then
 fi
 
 echo "RPCSX updated successfully"
+exit
