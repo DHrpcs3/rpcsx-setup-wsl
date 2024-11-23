@@ -5,6 +5,7 @@ set -x
 
 TMP_DIRECTORY=~/.rpcsx-setup-wsl
 REBOOT_REQUIRED=0
+rm -rf $TMP_DIRECTORY
 mkdir -p $TMP_DIRECTORY
 cd $TMP_DIRECTORY
 sudo add-apt-repository -y ppa:oibaf/graphics-drivers
@@ -36,12 +37,14 @@ sudo cp build/bin/rpcsx /bin
 cd ~
 rm -rf $TMP_DIRECTORY
 
-if [[ ! `grep 'export VK_LAYER_PATH=/usr/local/share/vulkan/explicit_layer.d/:$VK_LAYER_PATH'` ]]; then
+if [[ ! `grep 'export VK_LAYER_PATH=/usr/local/share/vulkan/explicit_layer.d/:$VK_LAYER_PATH' ~/.profile` ]]; then
     echo 'export VK_LAYER_PATH=/usr/local/share/vulkan/explicit_layer.d/:$VK_LAYER_PATH' >> ~/.profile
+    REBOOT_REQUIRED=1
 fi
 
-if [[ ! `grep 'export VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_shader_object'` ]]; then
+if [[ ! `grep 'export VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_shader_object' ~/.profile` ]]; then
     echo 'export VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_shader_object' >> ~/.profile
+    REBOOT_REQUIRED=1
 fi
 
 if [[ $REBOOT_REQUIRED == 1 ]]; then
