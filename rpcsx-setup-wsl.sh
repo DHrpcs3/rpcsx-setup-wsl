@@ -55,5 +55,13 @@ if [[ ! -f /usr/bin/rpcsx-update ]]; then
 fi
 
 if [[ $REBOOT_REQUIRED == 1 ]]; then
+    rpcsx --version
+    echo "RPCSX installed successfully"
+    echo "use rpcsx-update command to update emulator"
+    echo
+    echo "WSL will be restarted, run wsl command manually in few minutes"
     sudo init 0
+    exit
 fi
+
+echo "RPCSX updated successfully"
