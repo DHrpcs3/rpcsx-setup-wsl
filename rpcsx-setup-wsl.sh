@@ -47,6 +47,13 @@ if [[ ! `grep 'export VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_shader_object' ~/.prof
     REBOOT_REQUIRED=1
 fi
 
+if [[ ! -f /usr/bin/rpcsx-update ]]; then
+    echo "#!/bin/bash" | sudo tee /usr/bin/rpcsx-update
+    echo "#VERSION=1" | sudo tee -a /usr/bin/rpcsx-update
+    echo "wget -O - https://raw.githubusercontent.com/DHrpcs3/rpcsx-setup-wsl/refs/heads/main/rpcsx-setup-wsl.sh | bash" sudo tee -a /usr/bin/rpcsx-update
+    sudo chmod +x /usr/bin/rpcsx-update
+fi
+
 if [[ $REBOOT_REQUIRED == 1 ]]; then
     sudo init 0
 fi
