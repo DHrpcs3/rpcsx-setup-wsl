@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-set -x
 
 TMP_DIRECTORY=~/.rpcsx-setup-wsl
 REBOOT_REQUIRED=0
@@ -10,6 +9,8 @@ UPDATE_VERSION=2
 rm -rf $TMP_DIRECTORY
 mkdir -p $TMP_DIRECTORY
 cd $TMP_DIRECTORY
+
+set -x
 sudo add-apt-repository -y ppa:oibaf/graphics-drivers
 sudo apt install -y build-essential cmake libunwind-dev libglfw3-dev libvulkan-dev libsox-dev git libasound2-dev nasm g++-14
 sudo apt install -y pkgconf libasound2-plugins vainfo mesa-va-drivers
