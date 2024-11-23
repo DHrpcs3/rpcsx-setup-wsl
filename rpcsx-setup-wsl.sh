@@ -60,6 +60,7 @@ set +x
 
 if [[ $REBOOT_REQUIRED == 1 ]]; then
     rpcsx --version
+    set +e
     echo "RPCSX installed successfully"
     echo "use rpcsx-update command to update emulator"
     echo
@@ -68,5 +69,6 @@ if [[ $REBOOT_REQUIRED == 1 ]]; then
     exit
 fi
 
+set +e
 echo "RPCSX updated successfully"
 exit
